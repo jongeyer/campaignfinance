@@ -20,7 +20,7 @@ This tool was built with [Crossfilter](http://square.github.com/crossfilter/) an
 
 Hawaii Campaign Spending from Civic Celerator: [viz.hawaiicampaignspending.com](http://viz.hawaiicampaignspending.com/)
 
-Funding a Hawaii State Legislature [commoncausehawaii.github.io/leg_campaigns](http://commoncausehawaii.github.io/leg_campaigns/)
+Funding a Hawaii State Legislature: [commoncausehawaii.github.io/leg_campaigns](http://commoncausehawaii.github.io/leg_campaigns/)
 
 Civil Beat's Financial Disclosures database: [civilbeat.com/disclosures](http://www.civilbeat.com/disclosures/)
 
