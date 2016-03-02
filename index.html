@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href='http://fonts.googleapis.com/css?family=Palanquin:400,200,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/dc/1.7.0/dc.css">
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    
+    <title>How much money is involved Hawai‘i elections?</title> 
+</head>
+<body id="body">
+	<header class="container" id="top">
+		<div class="header-backing"></div>
+		<div class="header-credit smallcap">Photo from <a href="https://www.flickr.com/photos/danramarch/5683208622/in/photolist-9EcVVy-9EcVGA-bs7gsu-9E8TLP-9E8Txg-8Y57DX-bs7hn7-8WkKKB-9vYAG8-9vYArn-9vYAua-9vYAoe-9vYAER-9vYAx6-9vYAip-9w2BZ1-9w2Bz9-9vX4ki-9vWZjD-9w2BLJ-pHMu4N-9vYAsT-9w2BHQ-9vX58p-9vYApM-9w2Bxd-7zSfGt-7zW1Md-7zW1Tm-7zSfNn-7zW1TW-7zW1Yj-7zW1Lj-7zSfHP-7zSfMk-7zW1Zf-7zW1VE-7zSfJM-7zSfBB-5mx6oB-bF3ZoF-bF3Zs4-bs96fN-bF414R-bF3ZXe-bs7eJE-bs93Xu-bs94o3-bF3YF8-bs95fm">Flickr: Daniel Ramirez</a></div>
+		<div class="header-inner center">
+			<h1>How much money is involved Hawai‘i elections?<br>...and who is behind it all?</h1>
+			<div class="intro flex-h">
+				<div class="flex2 container">
+					<p>By looking at public data on state and county candidate contributions, expenditures, and disclosures published on data.hawaii.gov (see data sources below)
+					we can take a broad look at the amount of money influencing politics in Hawai‘i. 
+					Rather than focusing on individual candidates I wanted to quickly compare different aspects of the data that can otherwise remain hidden.
+					</p>
+					<p>Click anywhere on the graphs or bar charts below to quickly filter results.
+					</p>
+					<p>If you know of other data that should be added to this please <a href="mailto:jon@supraset.com">let me know</a>.
+					</p><br><br>
+					<p>Created by <a href="/">Jon Geyer {Supraset}</a></p>
+				</div>
+				<div class="flex container thin details">
+					<h4>Disclaimers</h4>
+					<p>To prepare the data I did some minor cleansing with <a href="http://openrefine.org/">Open Refine</a>. 
+					Altogether the data used in the tool below is rather large (roughly 25mb), and could use some optimization.
+					</p>
+					<p>This tool is really designed for larger screens -- a mobile friendly version might be possible in the future.
+					</p>
+				</div>
+				<div class="flex container thin details">
+					<h4>More Information</h4>
+					<p>State's breakdown of campaign spending:
+						<a href="https://data.hawaii.gov/apps/campaignspending">data.hawaii.gov/apps/campaignspending</a>
+					</p>
+					<p>Hawaii Campaign Spending from Civic Celerator: 
+						<a href="http://viz.hawaiicampaignspending.com/">viz.hawaiicampaignspending.com</a>
+					</p>
+					<p>Funding a Hawaii State Legislature
+						<a href="http://commoncausehawaii.github.io/leg_campaigns/">commoncausehawaii.github.io/leg_campaigns</a>
+					</p>
+					<p>Civil Beat's Financial Disclosures database:
+						<a href="http://www.civilbeat.com/disclosures/">civilbeat.com/disclosures</a>
+					</p>
+					<p>From the National Institute on Money in State Politics:
+						<a href="http://www.followthemoney.org/national-overview">followthemoney.org</a>
+					</p>
+				</div>
+			</div>
+			<br class="clear">
+		</div>
+	</header>
+	<nav class="clear">
+		<div class="nav-inner flex-h">
+			<div class="nav-item left" style="flex: .2;"><a href="#top"><img src="imgs/arrow-up.png" alt="up arrow" height="20"></a></div>
+			<div class="nav-item flex"><a href="#contributions">Campaign Contributions</a></div>
+			<div class="nav-item flex"><a href="#expenditures">Campaign Expenditures</a></div>
+			<div class="nav-item flex right"><a href="#disclosures">Financial Disclosures</a></div>
+			<!--<div class="nav-item right" style="flex: .67;"><a href="#search">
+				<img src="imgs/search.png" alt="up arrow" height="20"> &nbsp;
+				<span class="search-label">Candidate</span></a>
+			</div>-->
+		</div>
+	</nav>
+	<main>
+		<section data-order="1" id="contributions" class='front curr'>
+			
+			<div class="flex-h"><h2>Campaign Contributions Made to Candidates (2006 - 2015)</h2><hr class="flex"></div>
+			<div class="flex-h">
+				<div class="flex container description">
+					How important are big donors compared to small donors?<br>
+					Who have been the big political donors and recipients?
+				</div>
+				<div class="data-source">
+					Data Source: <a href="https://data.hawaii.gov/Community/Campaign-Contributions-Received-By-Hawaii-State-an/jexd-xbcg">data.hawaii.gov</a>	
+				</div>
+			</div>
+			<div class='charts contribution-charts'>
+				<div class="chart-sizer">
+					<div id='contrib-hidden-chart' class="chart invisible"></div>	
+				</div>
+				<div class="chart-block c-w3 c-h0-5 totals">
+					<h4>Dollars: <span class="amount">0</span></h4>
+					<h4 class="thinner">Records: <span class="size">0</span></h4>
+				</div>
+				<div class="chart-block c-w3">
+					<h5>Contributions per Week</h5>
+					<div id='contrib-date-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h4">
+					<h5>Candidates <span class="smaller">(Top 40 of <span class="size">X</span>)</span></h5>
+					<div id='contrib-candidate-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h3">
+					<h5>Donors <span class="smaller">(Top 30 of <span class="size">X</span>)</span></h5>
+					<div id='contrib-cname-chart' class="chart"></div>
+				</div>
+				<div class="chart-block">
+					<h5>Contributor Type</h5>
+					<div id='contrib-ctype-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h2">
+					<h5>Office</h5>
+					<div id='contrib-office-chart' class="chart"></div>
+				</div>
+				<div class="chart-block">
+					<h5>Party</h5>
+					<div id='contrib-party-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h1-5">
+					<h5>In State</h5>
+					<div id='contrib-state-chart' class="chart"></div>
+				</div>
+            </div>
+			<br class="clear">
+        </section>
+		<section data-order="2" id="expenditures" class='curr'>
+			<div class="flex-h"><h2>Campaign Expenditures Made by Candidates (2006 - 2015)</h2><hr class="flex"></div>
+			<div class="flex-h">
+				<div class="flex container description">
+					Who have been the big spenders?<br>
+					What did they spending all that money on?
+				</div>
+				<div class="data-source">
+					Data Source: <a href="https://data.hawaii.gov/Community/Expenditures-Made-By-Hawaii-State-and-County-Candi/3maa-4fgr">data.hawaii.gov</a>
+				</div>
+			</div>
+			<div class='charts expenditure-charts'>
+				<div class="chart-sizer">
+					<div id='expend-hidden-chart' class="chart invisible"></div>	
+				</div>
+				<div class="chart-block c-w3 c-h0-5 totals">
+					<h4>Dollars: <span class="amount">0</span></h4>
+					<h4 class="thinner">Records: <span class="size">0</span></h4>
+				</div>
+                <div class="chart-block c-w3">
+					<h5>Expenses per Week</h5>
+					<div id='expend-date-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h4">
+					<h5>Candidates <span class="smaller">(Top 40 of <span class="size">X</span>)</span></h5>
+					<div id='expend-candidate-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h2-5">
+					<h5>Expense Category</h5>
+					<div id='expend-expcat-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h2">
+					<h5>Office</h5>
+					<div id='expend-office-chart' class="chart"></div>
+				</div>
+				<div class="chart-block">
+					<h5>Party</h5>
+					<div id='expend-party-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h1-5">
+					<h5>In State</h5>
+					<div id='expend-state-chart' class="chart"></div>
+				</div>
+            </div>
+			<br class="clear">
+        </section>
+        <section data-order="3" id="disclosures" class='curr'>
+			<div class="flex-h"><h2>Financial Disclosures Submitted by State Employees and Candidates (2009 - 2015)</h2><hr class="flex"></div>
+			<div class="flex-h">
+				<div class="flex container description">
+					The financial disclosures data does not list dollar amounts but only the nature of the disclosure. 
+					As a result, this data is not very revealing. We can see relationships, but not how deep or shallow those relationships are.
+					<br><br>
+					However, the public data does point to PDF's that have dollar amounts or in many cases disclosures categorized with <a href="http://ethics.hawaii.gov/wp-content/uploads/2013/12/D-301-INST.pdf">financial codes</a>.
+					A PDF scraper could chip away at this, but it's really a mess. Greater uniformity in the disclosure filing forms is really the only solution.
+				</div>
+				<div class="data-source">
+					Data Source: <a href="https://data.hawaii.gov/dataset/Hawaii-State-Ethics-Commission-s-Public-Disclosure/9cs6-et3n">data.hawaii.gov</a>
+				</div>
+			</div>
+            <div class='charts disclosure-charts'>
+				<div class="chart-sizer">
+					<div id='disclos-hidden-chart' class="chart invisible"></div>	
+				</div>
+				<div class="chart-block c-w3 c-h0-5 totals">
+					<h4 class="thinner">Records: <span class="size">0</span></h4>
+				</div>
+                <div class="chart-block c-w3">
+					<h5>Filings per Week</h5>
+					<div id='disclos-fileDate-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h4">
+					<h5>Filer <span class="smaller">(Top 40 of <span class="size">X</span>)</span></h5>
+					<div id='disclos-filer-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h4">
+					<h5>Department/Board <span class="smaller">(Top 40 of <span class="size">X</span>)</span></h5>
+					<div id='disclos-dept-chart' class="chart"></div>
+				</div>
+				<div class="chart-block">
+					<h5>Type</h5>
+					<div id='disclos-type-chart' class="chart"></div>
+				</div>
+				<div class="chart-block c-h1-5">
+					<h5>Amended Disclosure</h5>
+					<div id='disclos-amend-chart' class="chart"></div>
+				</div>
+            </div>
+			<br class="clear">
+		</section>
+    </main>
+        
+	<script type="text/javascript">
+        (function() {
+            // Union of Chrome, Firefox, IE, Opera, and Safari console methods
+            var methods = ["assert", "assert", "cd", "clear", "count", "countReset",
+              "debug", "dir", "dirxml", "dirxml", "dirxml", "error", "error", "exception",
+              "group", "group", "groupCollapsed", "groupCollapsed", "groupEnd", "info",
+              "info", "log", "log", "markTimeline", "profile", "profileEnd", "profileEnd",
+              "select", "table", "table", "time", "time", "timeEnd", "timeEnd", "timeEnd",
+              "timeEnd", "timeEnd", "timeStamp", "timeline", "timelineEnd", "trace",
+              "trace", "trace", "trace", "trace", "warn"];
+            var length = methods.length;
+            var console = (window.console = window.console || {});
+            var method;
+            var noop = function() {};
+            while (length--) {
+              method = methods[length];
+              // define undefined methods as noops to prevent errors
+              if (!console[method])
+                console[method] = noop;
+            }
+          })();
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js"></script>
+	
+	<script type="text/javascript" src="lib/portamento-min.js"></script>
+	<script type="text/javascript" src="lib/jquery.is-loading.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+	
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>
+	<script type="text/javascript" src="http://d3js.org/queue.v1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.26/dc.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-9060473-2', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	
+    <script type="text/javascript">
+        var app = {};
+    </script>
+    <script type="text/javascript" src="src/app.js"></script>
+</body>
+</html>
