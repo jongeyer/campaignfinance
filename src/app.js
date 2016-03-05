@@ -25,7 +25,8 @@ _.extend(app, {
 		date: d3.time.format('%m/%d/%Y'),
 		$dec: d3.format('$,.0f'),
 		dec: d3.format(',.0f'),
-		mini: d3.format('$s'),
+		$mini: d3.format('$s'),
+		mini: d3.format('s'),
 		abbrev: function(_val){
 			if(_val.key) _val = _val.key;
 			return (_val.replace("Department", "Dept.")).replace("Committee", "Comm.");
@@ -154,7 +155,7 @@ _.extend(app, {
 		}
     },
 	
-	lineChartDefaults: function(_chart, _color, _container){
+	lineChartDefaults: function(_chart, _color, _container, _format){
 		var self = this,
 			$chartsContainer = _container.find(".charts");
 		
@@ -182,9 +183,9 @@ _.extend(app, {
 			.on("postRedraw", function(){
 				self.hideLoading($chartsContainer);
 			});*/
-		_chart.yAxis().ticks(5).tickFormat(this.format.mini);
+		_chart.yAxis().ticks(5).tickFormat(this.format[_format]);
 	},
-	rowChartDefaults: function(_chart, _color, _leftMargin, _tipHtml, _renderlet){
+	rowChartDefaults: function(_chart, _color, _leftMargin, _tipHtml, _format, _renderlet){
 		var self = this;
 		
 		_chart.width(this.w/3)
@@ -199,7 +200,7 @@ _.extend(app, {
 				
 				if(_renderlet) _renderlet(chart);
 			});
-		_chart.xAxis().ticks(4).tickFormat(this.format.mini);
+		_chart.xAxis().ticks(4).tickFormat(this.format[_format]);
 	},
 	pieChartDefaults: function(_chart, _color, _tipHtml, _container){
 		var self = this,
@@ -334,7 +335,7 @@ _.extend(app, {
 				self.addVerticalLine(_chart, new Date(2014, 7, 9),  2014, "L", "#999", "Primary"); // primary
 				self.addVerticalLine(_chart, new Date(2014, 10, 4), 2014, "R", "#999", "General Election"); // general
 			})
-		self.lineChartDefaults(dateChart, color, $container);
+		self.lineChartDefaults(dateChart, color, $container, "$mini");
 		dateChart.xAxis().ticks(8);
 		dateChart.render();
 		
@@ -344,7 +345,7 @@ _.extend(app, {
 			.data(function(group) { return group.top(40); })
 			//.label(function(d){ return _.findWhere(self.data.contributions, {cand_id: d.key}).candidate; })
 			//.label(function(d){ return d.key.name; });
-		self.rowChartDefaults(candChart, color, 110, tipHtml, function(chart){ 
+		self.rowChartDefaults(candChart, color, 110, tipHtml, "$mini", function(chart){ 
 			$(chart.anchor()).parent().find(".size").html(chart.group().size());
 			chart.data(function(group) { return group.top(40); })
 		});
@@ -353,7 +354,7 @@ _.extend(app, {
             .dimension(cNameDim).group(amountCnameGroup)
 			.data(function(group) { return group.top(30); })
 			.title(self.format.key)
-		self.rowChartDefaults(cnameChart, color, 110, tipHtml, function(chart){ 
+		self.rowChartDefaults(cnameChart, color, 110, tipHtml, "$mini", function(chart){ 
 			$(chart.anchor()).parent().find(".size").html(chart.group().size());
 			chart.data(function(group) { return group.top(30); })
 		});
@@ -361,15 +362,15 @@ _.extend(app, {
 		ctypeChart.height(150)
             .dimension(cTypeDim).group(amountCtypeGroup)
 			.label(self.format.abbrev)
-		self.rowChartDefaults(ctypeChart, color, 110, tipHtml);
+		self.rowChartDefaults(ctypeChart, color, 110, "$mini", tipHtml);
 		
 		partyChart.height(150)
 			.dimension(partyDim).group(amountPartyGroup)
-		self.rowChartDefaults(partyChart, color, 110, tipHtml);
+		self.rowChartDefaults(partyChart, color, 110, "$mini", tipHtml);
 		
 		officeChart.height(310)
             .dimension(officeDim).group(amountOfficeGroup)
-		self.rowChartDefaults(officeChart, color, 110, tipHtml);
+		self.rowChartDefaults(officeChart, color, 110, "$mini", tipHtml);
 		
 		stateChart.dimension(stateDim).group(stateGroup)
 		self.pieChartDefaults(stateChart, color, tipHtml, $container);
@@ -426,7 +427,7 @@ _.extend(app, {
 				self.addVerticalLine(_chart, new Date(2014, 7, 9),  2014, "L", "#999", "Primary"); // primary
 				self.addVerticalLine(_chart, new Date(2014, 10, 4), 2014, "R", "#999", "General Election"); // general
 			});
-		self.lineChartDefaults(dateChart, color, $container);
+		self.lineChartDefaults(dateChart, color, $container, "$mini");
 		dateChart.xAxis().ticks(8);
 		dateChart.render();
 		
@@ -445,16 +446,16 @@ _.extend(app, {
 		
 		partyChart.height(150)
 			.dimension(partyDim).group(amountPartyGroup)
-		self.rowChartDefaults(partyChart, color, 110, tipHtml);
+		self.rowChartDefaults(partyChart, color, 110, tipHtml, "$mini");
 		
 		officeChart.height(310)
             .dimension(officeDim).group(amountOfficeGroup)
-		self.rowChartDefaults(officeChart, color, 110, tipHtml);
+		self.rowChartDefaults(officeChart, color, 110, tipHtml, "$mini");
 		
 		expcatChart.height(440)
             .dimension(expcatDim).group(amountExpcatGroup)
 			.label(self.format.ellipsis)
-		self.rowChartDefaults(expcatChart, color, 110, tipHtml);
+		self.rowChartDefaults(expcatChart, color, 110, tipHtml, "$mini");
 		
 		stateChart.dimension(stateDim).group(stateGroup);
 		self.pieChartDefaults(stateChart, color, tipHtml, $container);
@@ -509,19 +510,19 @@ _.extend(app, {
 				self.addVerticalLine(_chart, new Date(2014, 7, 9),  2014, "R", "#999", "Primary"); // primary
 				self.addVerticalLine(_chart, new Date(2014, 10, 4), 2014, "R", "#999", "General Election"); // general
 			});
-		self.lineChartDefaults(fileDateChart, color, $container);
+		self.lineChartDefaults(fileDateChart, color, $container, "mini");
 		fileDateChart.xAxis().ticks(5);
 		fileDateChart.render();
 		
 		typeChart.height(120)
 			.dimension(typeDim).group(typeGroup)
-		self.rowChartDefaults(typeChart, color, 110, tipHtml);
+		self.rowChartDefaults(typeChart, color, 110, tipHtml, "mini");
 		
 		filerChart.height(710)
             .dimension(filerDim).group(filerGroup)
 			.data(function(group) { return group.top(40); })
 			//.on("renderlet", );
-		self.rowChartDefaults(filerChart, color, 150, tipHtml, function(chart){ 
+		self.rowChartDefaults(filerChart, color, 150, tipHtml, "mini", function(chart){ 
 			$container.find(".totals .size").html(self.format.dec(chart.dimension().top(1e9).length));
 
 			$(chart.anchor()).parent().find(".size").html(chart.group().size());
@@ -531,9 +532,8 @@ _.extend(app, {
 		deptChart.height(710)
             .dimension(deptDim).group(deptGroup)
 			.data(function(group) { return group.top(40); })	
-			.label(function(d){ return self.format.ellipsis(self.format.abbrev(d)); })
-			
-		self.rowChartDefaults(deptChart, color, 110, tipHtml, function(chart){ 
+			.label(function(d){ return self.format.ellipsis(self.format.abbrev(d)); });
+		self.rowChartDefaults(deptChart, color, 110, tipHtml, "mini", function(chart){ 
 			$(chart.anchor()).parent().find(".size").html(chart.group().size());
 			chart.data(function(group) { return group.top(40); })
 		});
@@ -557,49 +557,5 @@ _.extend(app, {
 	hideLoading: function(_elem){
 		//console.debug("hide loading");
 		//$(_elem).isLoading( "hide" );
-	},
-	
-	
-	/*
-    setHash: function(_page){
-        window.location.hash = _page;
-    },
-    getHash: function(){
-        var link = window.location.hash.substr(1),
-            openParen = link.indexOf('('), closeParen = link.indexOf(')'),
-            id = null;
-        if(openParen > -1){
-            id = link.substr(openParen + 1, closeParen - openParen - 1);
-            link = link.substr(0, openParen);
-        }
-        id = $.isEmptyObject(id) ? false : id;
-        return {link: link, id: id};
-    },
-    loadPage: function(){
-        console.info("s:loadPage");
-        
-        var self = this;
-        NProgress.start();
-        
-        var hash = self.getHash().link;
-        this.$el = $("[data-link='" + hash + "'] article");
-        
-        
-        NProgress.done();
-        
-        $('.app-menu .link').each(function(){
-            $(this).removeClass("active");
-            if($(this).data("link") === hash.link && !hash.id.length){
-                $(this).addClass("active");
-            }
-        });
-        $.get(hash.link + '.html', { "_": $.now() }, function (data) {
-            self.el.html(data);
-            self.el.fadeIn();
-            
-            self.loadDataForPage(hash);
-        }, 'html');
-        
-    }
-    */
+	}
 });
