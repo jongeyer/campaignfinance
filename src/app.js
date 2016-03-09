@@ -1,5 +1,5 @@
 /* 
- * This code handles the menu interaction and dynamics.
+ * This code handles the dc.js chart generation.
  * 
  */
 
@@ -362,15 +362,15 @@ _.extend(app, {
 		ctypeChart.height(150)
             .dimension(cTypeDim).group(amountCtypeGroup)
 			.label(self.format.abbrev)
-		self.rowChartDefaults(ctypeChart, color, 110, "$mini", tipHtml);
+		self.rowChartDefaults(ctypeChart, color, 110, tipHtml, "$mini");
 		
 		partyChart.height(150)
 			.dimension(partyDim).group(amountPartyGroup)
-		self.rowChartDefaults(partyChart, color, 110, "$mini", tipHtml);
+		self.rowChartDefaults(partyChart, color, 110, tipHtml, "$mini");
 		
 		officeChart.height(310)
             .dimension(officeDim).group(amountOfficeGroup)
-		self.rowChartDefaults(officeChart, color, 110, "$mini", tipHtml);
+		self.rowChartDefaults(officeChart, color, 110, tipHtml, "$mini");
 		
 		stateChart.dimension(stateDim).group(stateGroup)
 		self.pieChartDefaults(stateChart, color, tipHtml, $container);
